@@ -1,6 +1,13 @@
 <template>
   <div class="space-y-16 py-4 px-2">
-    <div class="flex flex-wrap">
+    <div
+      v-if="!loaded"
+      class="w-screen h-screen flex justify-center items-center"
+    >
+      <button class="btn btn-lg btn-circle loading"></button>
+    </div>
+
+    <div v-if="loaded" class="flex flex-wrap">
       <ReceivedMessage />
       <SentMessage />
       <GroupedReceivedMessage />
@@ -20,6 +27,11 @@ import SentMessage from "./components/SentMessage.vue";
 import GroupedReceivedMessage from "./components/GroupedReceivedMessage.vue";
 export default {
   name: "App",
+  data: function () {
+    return {
+      loaded: false,
+    };
+  },
   components: {
     ReceivedMessage,
     SentMessage,
