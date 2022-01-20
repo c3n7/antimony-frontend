@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-16 p-4">
+  <div class="space-y-16 py-4 px-2">
     <div class="flex flex-wrap">
       <ReceivedMessage />
       <SentMessage />
