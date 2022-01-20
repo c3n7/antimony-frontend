@@ -16,7 +16,7 @@
       </svg>
     </button>
     <div class="card shadow-md bg-base-200">
-      <div class="card-body">
+      <div class="card-body py-4">
         <p>
           Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit
           sit necessitatibus veritatis sed molestiae voluptates incidunt iure
