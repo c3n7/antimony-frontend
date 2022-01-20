@@ -1,5 +1,5 @@
 <template>
-  <div class="basis-5/6 flex items-end mb-2">
+  <div class="basis-10/12 flex items-end mb-2">
     <button class="btn btn-circle btn-md mr-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
