@@ -1,6 +1,6 @@
 <template>
-  <div class="basis-10/12 flex items-end mb-2 justify-between">
-    <div class="basis-1/12">
+  <div class="flex items-end mb-2 justify-start basis-full">
+    <div class="basis-14">
       <button class="btn btn-circle btn-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@
         </svg>
       </button>
     </div>
-    <div class="card shadow-md bg-base-200 basis-10/12">
+    <div class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12">
       <div class="card-body py-4">
         <p>
           Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit

@@ -1,6 +1,7 @@
 <template>
-  <div class="basis-10/12 flex justify-end mb-1">
-    <div class="card shadow-md bg-base-200 basis-10/12">
+  <div class="flex justify-start mb-1 basis-full">
+    <div class="basis-14"></div>
+    <div class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12">
       <div class="card-body py-4">
         <p>
           Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit
