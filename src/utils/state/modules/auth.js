@@ -41,6 +41,22 @@ const actions = {
       });
     console.log("Authenticating", credentials);
   },
+  async getUser({ commit }) {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .get("/auth/user/")
+      .then((response) => {
+        console.log("getUser", response);
+        commit("setBio", response.data);
+      })
+      .catch((error) => {
+        router.replace("/sign-in");
+        console.log("getUser", error);
+      });
+  },
 };
 
 const mutations = {
