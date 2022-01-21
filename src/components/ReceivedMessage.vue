@@ -4,16 +4,14 @@
       <button class="btn btn-circle btn-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          class="inline-block w-6 h-6 stroke-current"
+          width="16"
+          height="16"
+          fill="currentColor"
+          viewBox="0 0 16 16"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          ></path>
+            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+          />
         </svg>
       </button>
     </div>
