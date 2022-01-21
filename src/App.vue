@@ -17,6 +17,7 @@
         <SentMessage />
         <GroupedReceivedMessage />
         <ReceivedMessage />
+        <ChatDateCard />
         <SentMessage />
         <ReceivedMessage />
       </div>
@@ -33,6 +34,7 @@ import SentMessage from "./components/SentMessage.vue";
 import GroupedReceivedMessage from "./components/GroupedReceivedMessage.vue";
 import NavBar from "./components/NavBar.vue";
 import MessageInputSection from "./components/MessageInputSection.vue";
+import ChatDateCard from "./components/ChatDateCard.vue";
 export default {
   name: "App",
   data: function () {
@@ -46,6 +48,7 @@ export default {
     GroupedReceivedMessage,
     NavBar,
     MessageInputSection,
+    ChatDateCard,
   },
 };
 </script>

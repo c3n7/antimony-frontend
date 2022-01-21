@@ -1,6 +1,6 @@
 <template>
   <div
-    class="navbar mb-2 shadow-lg bg-neutral text-neutral-content fixed top-0 left-0 right-0 z-10"
+    class="navbar mb-2 shadow-lg bg-neutral text-neutral-content fixed top-0 left-0 right-0 z-10 bg-opacity-95"
   >
     <div class="flex-none">
       <button class="btn btn-square btn-ghost">
