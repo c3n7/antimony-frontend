@@ -21,6 +21,8 @@
         <ReceivedMessage />
       </div>
     </div>
+
+    <MessageInputSection />
   </div>
 </template>
 
@@ -29,6 +31,7 @@ import ReceivedMessage from "./components/ReceivedMessage.vue";
 import SentMessage from "./components/SentMessage.vue";
 import GroupedReceivedMessage from "./components/GroupedReceivedMessage.vue";
 import NavBar from "./components/NavBar.vue";
+import MessageInputSection from "./components/MessageInputSection.vue";
 export default {
   name: "App",
   data: function () {
@@ -41,6 +44,7 @@ export default {
     SentMessage,
     GroupedReceivedMessage,
     NavBar,
+    MessageInputSection,
   },
 };
 </script>
