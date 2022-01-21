@@ -45,20 +45,11 @@
             </label>
           </div>
 
-          <div class="flex items-center">
-            <div class="form-control">
-              <label class="cursor-pointer label flex justify-start space-x-2">
-                <input type="checkbox" class="checkbox" />
-                <span class="label-text">Remember me</span>
-              </label>
-            </div>
-
-            <a class="link link-primary text-right flex-1">Forgot Password?</a>
+          <div class="pt-3">
+            <button class="btn btn-block btn-primary" @click="signIn()">
+              Sign In
+            </button>
           </div>
-
-          <button class="btn btn-block btn-primary" @click="signIn()">
-            Sign In
-          </button>
 
           <div class="link link-hover link-primary w-full text-center pt-3">
             Register

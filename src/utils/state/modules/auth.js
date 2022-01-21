@@ -4,10 +4,10 @@ import getCookie from "../../cookies";
 
 const state = {
   id: "",
-  username: "john-doe",
-  first_name: "John",
-  last_name: "Doe",
-  email: "johndoe@gmail.com",
+  username: "",
+  first_name: "",
+  last_name: "",
+  email: "",
   token: "",
   errors: [],
 };
@@ -26,6 +26,7 @@ const actions = {
       .post("/auth/login/", credentials)
       .then((response) => {
         commit("setToken", response.data.key);
+        commit("setErrors", []);
         // sessionStorage.setItem("token", response.data.key);
         actions.getUser({ commit });
         router.push("/");
