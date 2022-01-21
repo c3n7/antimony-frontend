@@ -15,15 +15,17 @@
       <MLItem />
       <MLItem />
     </div>
+    <MLNewChatFab />
   </div>
 </template>
 
 <script>
 import MLNavBar from "../components/message_list/MLNavBar.vue";
 import MLItem from "../components/message_list/MLItem.vue";
+import MLNewChatFab from "../components/message_list/MLNewChatFab.vue";
 export default {
   name: "MessageListView",
-  components: { MLNavBar, MLItem },
+  components: { MLNavBar, MLItem, MLNewChatFab },
 };
 </script>
 
