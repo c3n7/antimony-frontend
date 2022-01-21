@@ -9,8 +9,6 @@ export default {
   name: "App",
   setup() {
     onMounted(() => {
-      console.log("Mounted");
-
       const daisyThemes = [
         "light",
         "dark",

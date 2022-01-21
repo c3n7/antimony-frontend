@@ -22,10 +22,15 @@
         </div>
         <ul
           tabindex="0"
-          class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-auto max-h-72 overflow-y-scroll"
+          class="p-2 shadow menu dropdown-content bg-base-300 rounded-box w-auto max-h-72 overflow-y-scroll"
         >
           <li v-for="daisyTheme in daisyThemes" :key="daisyTheme">
-            <a @click="changeTheme(daisyTheme)">{{ daisyTheme }}</a>
+            <a
+              @click="changeTheme(daisyTheme)"
+              :class="{ 'bg-primary-focus': currentTheme === daisyTheme }"
+            >
+              {{ daisyTheme }}</a
+            >
           </li>
         </ul>
       </div>
@@ -49,6 +54,8 @@
 </template>
 
 <script>
+import { onMounted, ref } from "vue";
+
 export default {
   name: "MLNavBar",
   data: function () {
@@ -77,11 +84,17 @@ export default {
         "dracula",
         "cmyk",
       ],
+      currentTheme: "dark",
     };
+  },
+  mounted() {
+    this.currentTheme = document.documentElement.getAttribute("data-theme");
+    console.log("Mounted", this.currentTheme);
   },
   methods: {
     changeTheme(theme) {
       console.log("Changing to " + theme);
+      this.currentTheme = theme;
       window.localStorage.setItem("theme", theme);
       document.documentElement.setAttribute("data-theme", theme);
     },
