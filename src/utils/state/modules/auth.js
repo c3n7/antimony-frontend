@@ -57,7 +57,7 @@ const actions = {
         console.log("getUser", error);
       });
   },
-  async signOut() {
+  async signOut({ commit }) {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.withCredentials = true;
@@ -66,6 +66,13 @@ const actions = {
       .post("/auth/logout/")
       .then((response) => {
         console.log("signOut", response);
+        commit("setBio", {
+          pk: "",
+          username: "",
+          email: "",
+          first_name: "",
+          last_name: "",
+        });
         router.replace("/signIn");
       })
       .catch((error) => {
@@ -87,7 +94,8 @@ const mutations = {
   },
   setToken: (state, token) => (state.token = "Token " + token),
   setBio: (state, details) => {
-    (state.id = details.pk), (state.username = details.username);
+    state.id = details.pk;
+    state.username = details.username;
     state.email = details.email;
     state.first_name = details.first_name;
     state.last_name = details.last_name;
