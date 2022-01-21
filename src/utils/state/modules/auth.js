@@ -1,6 +1,5 @@
 import axios from "axios";
 import router from "../../router";
-import getCookie from "../../cookies";
 
 const state = {
   id: "",

@@ -20,12 +20,24 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 import MLNavBar from "../components/message_list/MLNavBar.vue";
 import MLItem from "../components/message_list/MLItem.vue";
 import MLNewChatFab from "../components/message_list/MLNewChatFab.vue";
 export default {
   name: "MessageListView",
   components: { MLNavBar, MLItem, MLNewChatFab },
+  methods: {
+    ...mapActions({
+      getUser: "auth/getUser",
+      getConversationList: "conversations/getConversationList",
+    }),
+  },
+  async created() {
+    await this.getUser();
+    await this.getConversationList();
+  },
 };
 </script>
 
