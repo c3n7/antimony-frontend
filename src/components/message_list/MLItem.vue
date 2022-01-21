@@ -16,7 +16,10 @@
     </button>
 
     <div class="flex-1 md:basis-10/12 px-3 py-4 overflow-hidden">
-      <div class="text-md font-bold">Jean Dean</div>
+      <div class="flex justify-between items-end">
+        <div class="text-md font-bold pb-1">Jean Dean</div>
+        <div class="text-sm opacity-80 font-light pb-1">10:15</div>
+      </div>
       <div class="truncate opacity-60 text-sm">
         Voluptatum assumenda quasi amet harum cupiditate. Lorem ipsum dolor sit
         amet consectetur, adipisicing elit. Quibusdam dicta laboriosam placeat
