@@ -11,14 +11,47 @@ export default {
     onMounted(() => {
       console.log("Mounted");
 
+      const daisyThemes = [
+        "light",
+        "dark",
+        "cupcake",
+        "bumblebee",
+        "emerald",
+        "corporate",
+        "synthwave",
+        "retro",
+        "cyberpunk",
+        "valentine",
+        "halloween",
+        "garden",
+        "forest",
+        "aqua",
+        "lofi",
+        "pastel",
+        "fantasy",
+        "wireframe",
+        "black",
+        "luxury",
+        "dracula",
+        "cmyk",
+      ];
+
+      const setTheme = window.localStorage.getItem("theme");
+      if (setTheme && daisyThemes.includes(setTheme)) {
+        document.documentElement.setAttribute("data-theme", setTheme);
+      }
+
       window.addEventListener("storage", (e) => {
-        // When local storage changes, dump the list to
-        // the console.
-        console.log(e);
-        if (e.newValue) {
+        if (
+          e.key === "theme" &&
+          e.newValue &&
+          daisyThemes.includes(e.newValue)
+        ) {
+          document.documentElement.setAttribute("data-theme", e.newValue);
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          // localStorage.setItem("theme", "");
         }
-        document.documentElement.setAttribute("data-theme", e.newValue);
-        console.log(window.localStorage.getItem("theme"));
       });
     });
   },
