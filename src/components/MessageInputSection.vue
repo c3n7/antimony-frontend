@@ -1,7 +1,7 @@
 <template>
   <div class="py-2 px-2 bg-base-200 fixed bottom-0 left-0 right-0 z-10">
     <div class="form-control">
-      <div class="flex space-x-5 w-full place-items-end">
+      <div class="flex space-x-2 w-full place-items-end justify-between">
         <textarea
           class="textarea w-full"
           placeholder="Message"

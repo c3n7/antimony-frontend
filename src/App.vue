@@ -22,6 +22,7 @@
       </div>
     </div>
     <!-- TODO: Add responsive gap here that reacts to the input section's height  -->
+    <div class="py-60"></div>
     <MessageInputSection />
   </div>
 </template>
