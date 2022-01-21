@@ -54,8 +54,6 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
-
 export default {
   name: "MLNavBar",
   data: function () {
@@ -89,11 +87,9 @@ export default {
   },
   mounted() {
     this.currentTheme = document.documentElement.getAttribute("data-theme");
-    console.log("Mounted", this.currentTheme);
   },
   methods: {
     changeTheme(theme) {
-      console.log("Changing to " + theme);
       this.currentTheme = theme;
       window.localStorage.setItem("theme", theme);
       document.documentElement.setAttribute("data-theme", theme);
