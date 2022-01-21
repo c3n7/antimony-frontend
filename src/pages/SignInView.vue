@@ -1,8 +1,10 @@
 <template>
   <div
-    class="w-screen h-screen bg-base-200 bg-opacity-80 p-2 flex items-center"
+    class="w-screen h-screen bg-base-200 bg-opacity-80 p-2 flex items-center justify-center"
   >
-    <div class="card shadow bg-base-200 basis-full">
+    <div
+      class="card shadow bg-base-200 basis-full md:basis-7/12 lg:basis-6/12 xl:basis-4/12 2xl:basis-3/12"
+    >
       <div class="card-body">
         <h2 class="card-title">Sign In to Antimony</h2>
 
