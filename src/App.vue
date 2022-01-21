@@ -21,7 +21,7 @@
         <ReceivedMessage />
       </div>
     </div>
-
+    <!-- TODO: Add responsive gap here that reacts to the input section's height  -->
     <MessageInputSection />
   </div>
 </template>
