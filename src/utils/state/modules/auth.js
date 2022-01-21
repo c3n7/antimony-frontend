@@ -53,8 +53,24 @@ const actions = {
         commit("setBio", response.data);
       })
       .catch((error) => {
-        router.replace("/sign-in");
+        router.replace("/signIn");
         console.log("getUser", error);
+      });
+  },
+  async signOut() {
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    axios.defaults.xsrfCookieName = "csrftoken";
+    axios.defaults.withCredentials = true;
+
+    await axios
+      .post("/auth/logout/")
+      .then((response) => {
+        console.log("signOut", response);
+        router.replace("/signIn");
+      })
+      .catch((error) => {
+        console.log("signOut", error);
+        router.replace("/signIn");
       });
   },
 };
