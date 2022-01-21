@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <NavBar />
+    <ChatNavBar />
     <div class="space-y-16 pb-4 pt-20 px-2">
       <div
         v-if="!loaded"
@@ -22,19 +22,18 @@
         <ReceivedMessage />
       </div>
     </div>
-    <!-- TODO: Add responsive gap here that reacts to the input section's height  -->
     <div class="py-60"></div>
     <MessageInputSection />
   </div>
 </template>
 
 <script>
-import ReceivedMessage from "../components/ReceivedMessage.vue";
-import SentMessage from "../components/SentMessage.vue";
-import GroupedReceivedMessage from "../components/GroupedReceivedMessage.vue";
-import NavBar from "../components/NavBar.vue";
-import MessageInputSection from "../components/MessageInputSection.vue";
-import ChatDateCard from "../components/ChatDateCard.vue";
+import ReceivedMessage from "../components/chat_view/ReceivedMessage.vue";
+import SentMessage from "../components/chat_view/SentMessage.vue";
+import GroupedReceivedMessage from "../components/chat_view/GroupedReceivedMessage.vue";
+import ChatNavBar from "../components/chat_view/ChatNavBar.vue";
+import MessageInputSection from "../components/chat_view/MessageInputSection.vue";
+import ChatDateCard from "../components/chat_view/ChatDateCard.vue";
 export default {
   name: "ChatView",
   data: function () {
@@ -46,7 +45,7 @@ export default {
     ReceivedMessage,
     SentMessage,
     GroupedReceivedMessage,
-    NavBar,
+    ChatNavBar,
     MessageInputSection,
     ChatDateCard,
   },
