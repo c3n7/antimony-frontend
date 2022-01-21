@@ -1,9 +1,14 @@
 import { createWebHistory, createRouter } from "vue-router";
 import ChatView from "../../pages/ChatView.vue";
+import MessageListView from "../../pages/MessageListView.vue";
 
 const routes = [
   {
     path: "/",
+    component: MessageListView,
+  },
+  {
+    path: "/chatView",
     component: ChatView,
   },
 ];
