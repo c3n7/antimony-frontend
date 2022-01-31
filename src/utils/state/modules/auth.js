@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "../../router";
+import getCookie from "../../cookies";
 
 const state = {
   id: "",
@@ -60,6 +61,8 @@ const actions = {
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
     axios.defaults.xsrfCookieName = "csrftoken";
     axios.defaults.withCredentials = true;
+    const csrftoken = getCookie("csrftoken");
+    console.log("Token ", csrftoken);
 
     await axios
       .post("/auth/logout/")
