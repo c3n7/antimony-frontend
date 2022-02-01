@@ -13,7 +13,13 @@
       </div>
 
       <div v-if="loaded" class="flex flex-wrap">
-        <ReceivedMessage />
+        <div v-for="message in currentConversation" :key="message.id">
+          <ReceivedMessage
+            v-if="Number(message.user_from) === Number(sender)"
+          />
+          <SentMessage v-else-if="Number(message.user_to) === Number(sender)" />
+        </div>
+        <!-- <ReceivedMessage />
         <SentMessage />
         <GroupedReceivedMessage />
         <ReceivedMessage />
@@ -22,7 +28,7 @@
         <ReceivedMessage />
         <ChatDateCard />
         <SentMessage />
-        <ReceivedMessage />
+        <ReceivedMessage /> -->
       </div>
     </div>
     <div class="py-60"></div>
