@@ -23,11 +23,14 @@
       </div>
     </div>
     <div class="py-60"></div>
+    {{ sender }}
     <MessageInputSection />
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 import ReceivedMessage from "../components/chat_view/ReceivedMessage.vue";
 import SentMessage from "../components/chat_view/SentMessage.vue";
 import GroupedReceivedMessage from "../components/chat_view/GroupedReceivedMessage.vue";
@@ -41,6 +44,9 @@ export default {
       loaded: true,
     };
   },
+  props: {
+    sender: String,
+  },
   components: {
     ReceivedMessage,
     SentMessage,
@@ -48,6 +54,17 @@ export default {
     ChatNavBar,
     MessageInputSection,
     ChatDateCard,
+  },
+  methods: {
+    ...mapActions({
+      getUser: "auth/getUser",
+      getCurrentConversationList: "conversations/getCurrentConversationList",
+    }),
+  },
+  async created() {
+    await this.getUser();
+    // TODO: Show loading state
+    await this.getCurrentConversationList(Number(this.sender));
   },
 };
 </script>
