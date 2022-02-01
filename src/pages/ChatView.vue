@@ -1,6 +1,9 @@
 <template>
   <div class="relative">
-    <ChatNavBar />
+    <ChatNavBar
+      :firstName="conversingWith.first_name"
+      :lastName="conversingWith.last_name"
+    />
     <div class="space-y-16 pb-4 pt-20 px-2">
       <div
         v-if="!loaded"
@@ -54,6 +57,12 @@ export default {
     ChatNavBar,
     MessageInputSection,
     ChatDateCard,
+  },
+  computed: {
+    ...mapGetters({
+      currentConversation: "conversations/currentConversation",
+      conversingWith: "conversations/currentlyConversingWith",
+    }),
   },
   methods: {
     ...mapActions({

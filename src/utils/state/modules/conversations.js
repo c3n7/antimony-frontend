@@ -3,11 +3,13 @@ import axios from "axios";
 const state = {
   head_messages: [],
   current_conversation: [],
+  currently_conversating_with: { first_name: "", last_name: "" },
 };
 
 const getters = {
   headMessages: (state) => state.head_messages,
   currentConversation: (state) => state.current_conversation,
+  currentlyConversingWith: (state) => state.currently_conversating_with,
 };
 
 const actions = {
@@ -47,7 +49,10 @@ const actions = {
       .get(`/msgs/conversation/?with=${conversingWith}`, configHeaders)
       .then((response) => {
         console.log("getCurrentConversationList", response);
-        commit("setCurrentConversation", response.data);
+        commit("setCurrentConversation", {
+          rdata: response.data,
+          with: conversingWith,
+        });
         // commit("setErrors", {});
       })
       .catch((error) => {
@@ -66,7 +71,25 @@ const mutations = {
     [...state.head_messages] = data;
   },
   setCurrentConversation: (state, data) => {
-    [...state.current_conversation] = data;
+    [...state.current_conversation] = data.rdata;
+
+    state.currently_conversating_with = { first_name: "", last_name: "" };
+
+    for (const msg of data.rdata) {
+      if (msg.user_from === data.with) {
+        state.currently_conversating_with = {
+          first_name: msg.sender_first_name,
+          last_name: msg.sender_last_name,
+        };
+        break;
+      } else if (msg.user_to === data.with) {
+        state.currently_conversating_with = {
+          first_name: msg.recepient_first_name,
+          last_name: msg.recepient_last_name,
+        };
+        break;
+      }
+    }
   },
 };
 

@@ -20,7 +20,7 @@
       </router-link>
     </div>
     <div class="flex-1 px-2 mx-2">
-      <span class="text-lg font-bold"> John Doe </span>
+      <span class="text-lg font-bold"> {{ firstName }} {{ lastName }} </span>
     </div>
     <div class="flex-none">
       <button class="btn btn-square btn-ghost">
@@ -45,6 +45,10 @@
 <script>
 export default {
   name: "ChatNavBar",
+  props: {
+    firstName: String,
+    lastName: String,
+  },
 };
 </script>
 
