@@ -2,18 +2,18 @@
   <div class="relative min-h-screen bg-base-200 bg-opacity-80">
     <MLNavBar />
     <div class="pt-20 px-2 space-y-2">
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
-      <MLItem />
+      <div v-for="msg in headMessages" :key="msg.id">
+        <MLItem
+          :from="msg.sender_first_name + ' ' + msg.sender_last_name"
+          :body="msg.message"
+          :received_time="
+            new Date(msg.created_at).toLocaleTimeString(
+              'en-GB',
+              enGBTimeOptions
+            )
+          "
+        />
+      </div>
     </div>
     <MLNewChatFab />
   </div>
@@ -28,6 +28,14 @@ import MLNewChatFab from "../components/message_list/MLNewChatFab.vue";
 export default {
   name: "MessageListView",
   components: { MLNavBar, MLItem, MLNewChatFab },
+  data() {
+    return {
+      enGBTimeOptions: { hour: "2-digit", minute: "2-digit" },
+    };
+  },
+  computed: {
+    ...mapGetters({ headMessages: "conversations/headMessages" }),
+  },
   methods: {
     ...mapActions({
       getUser: "auth/getUser",

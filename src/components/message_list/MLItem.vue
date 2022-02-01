@@ -17,14 +17,13 @@
 
     <div class="flex-1 md:basis-10/12 px-3 py-4 overflow-hidden">
       <div class="flex justify-between items-end">
-        <div class="text-md font-bold pb-1">Jean Dean</div>
-        <div class="text-sm opacity-80 font-light pb-1">10:15</div>
+        <div class="text-md font-bold pb-1">{{ from }}</div>
+        <div class="text-sm opacity-80 font-light pb-1">
+          {{ received_time }}
+        </div>
       </div>
       <div class="truncate opacity-60 text-sm">
-        Voluptatum assumenda quasi amet harum cupiditate. Lorem ipsum dolor sit
-        amet consectetur, adipisicing elit. Quibusdam dicta laboriosam placeat
-        illo. Nemo laudantium pariatur expedita quia, est veniam similique iure
-        explicabo magni saepe repellendus illo nihil id fugit.
+        {{ body }}
       </div>
     </div>
   </div>
@@ -33,6 +32,11 @@
 <script>
 export default {
   name: "MLItem",
+  props: {
+    from: String,
+    received_time: String,
+    body: String,
+  },
 };
 </script>
 
