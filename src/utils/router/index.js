@@ -13,8 +13,9 @@ const routes = [
     component: SignInView,
   },
   {
-    path: "/chat",
+    path: "/chat/:sender",
     component: ChatView,
+    props: true,
   },
 ];
 

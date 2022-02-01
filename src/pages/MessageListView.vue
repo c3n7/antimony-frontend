@@ -7,6 +7,7 @@
           :from="msg.sender_first_name + ' ' + msg.sender_last_name"
           :body="msg.message"
           :received_time="formatDate(msg.created_at)"
+          :sender="msg.user_from"
         />
       </div>
     </div>
