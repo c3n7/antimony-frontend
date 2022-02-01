@@ -16,8 +16,12 @@
         <div v-for="message in currentConversation" :key="message.id">
           <ReceivedMessage
             v-if="Number(message.user_from) === Number(sender)"
+            :message="message.message"
           />
-          <SentMessage v-else-if="Number(message.user_to) === Number(sender)" />
+          <SentMessage
+            v-else-if="Number(message.user_to) === Number(sender)"
+            :message="message.message"
+          />
         </div>
         <!-- <ReceivedMessage />
         <SentMessage />
