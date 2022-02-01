@@ -6,12 +6,7 @@
         <MLItem
           :from="msg.sender_first_name + ' ' + msg.sender_last_name"
           :body="msg.message"
-          :received_time="
-            new Date(msg.created_at).toLocaleTimeString(
-              'en-GB',
-              enGBTimeOptions
-            )
-          "
+          :received_time="formatDate(msg.created_at)"
         />
       </div>
     </div>
@@ -41,6 +36,30 @@ export default {
       getUser: "auth/getUser",
       getConversationList: "conversations/getConversationList",
     }),
+    formatDate(dateStr) {
+      let dateObj = new Date(dateStr);
+      // .toLocaleString("en-GB")
+      let today = new Date();
+
+      // TODO: handle cases of future messages where dateObj > today
+      if (today.getFullYear() > dateObj.getFullYear()) {
+        dateStr = dateObj.toLocaleDateString("en-GB");
+      } else if (
+        today.getMonth() > dateObj.getMonth() ||
+        today.getDate() > dateObj.getDate()
+      ) {
+        dateStr = dateObj.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        });
+      } else {
+        dateStr = dateObj.toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      }
+      return dateStr;
+    },
   },
   async created() {
     await this.getUser();
