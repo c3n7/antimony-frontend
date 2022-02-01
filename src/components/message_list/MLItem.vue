@@ -1,5 +1,7 @@
 <template>
-  <div class="flex items-center mb-2 justify-start basis-full space-x-1">
+  <div
+    class="flex items-center mb-2 justify-start basis-full space-x-1 hover:bg-base-100 pl-2"
+  >
     <button class="btn btn-circle w-14 h-14">
       <svg
         xmlns="http://www.w3.org/2000/svg"

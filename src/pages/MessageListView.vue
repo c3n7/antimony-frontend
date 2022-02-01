@@ -63,6 +63,7 @@ export default {
   },
   async created() {
     await this.getUser();
+    // TODO: Show loading state
     await this.getConversationList();
   },
 };
