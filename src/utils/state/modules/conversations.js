@@ -10,12 +10,15 @@ const getters = {
 
 const actions = {
   async getConversationList({ commit }) {
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.withCredentials = true;
+    const sessionToken = sessionStorage.getItem("token");
+    const configHeaders = {
+      headers: {
+        Authorization: "Token " + sessionToken, // + "dd",
+      },
+    };
 
     await axios
-      .get(`/msgs/`)
+      .get(`/msgs/`, configHeaders)
       .then((response) => {
         console.log("getConversationList", response);
         // commit("setParentList", response.data);

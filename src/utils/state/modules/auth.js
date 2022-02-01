@@ -27,7 +27,7 @@ const actions = {
       .then((response) => {
         commit("setToken", response.data.key);
         commit("setErrors", []);
-        // sessionStorage.setItem("token", response.data.key);
+        sessionStorage.setItem("token", response.data.key);
         actions.getUser({ commit });
         router.push("/");
       })
@@ -42,12 +42,19 @@ const actions = {
     console.log("Authenticating", credentials);
   },
   async getUser({ commit }) {
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.withCredentials = true;
+    // axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+    // axios.defaults.xsrfCookieName = "csrftoken";
+    // axios.defaults.withCredentials = true;
+    const sessionToken = sessionStorage.getItem("token");
+    const configHeaders = {
+      headers: {
+        Authorization: "Token " + sessionToken, // + "dd",
+      },
+    };
 
     await axios
-      .get("/auth/user/")
+      .get("/auth/user/", configHeaders)
+      //   .get("/auth/user/")
       .then((response) => {
         console.log("getUser", response);
         commit("setBio", response.data);
@@ -58,14 +65,15 @@ const actions = {
       });
   },
   async signOut({ commit }) {
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.withCredentials = true;
-    const csrftoken = getCookie("csrftoken");
-    console.log("Token ", csrftoken);
+    const sessionToken = sessionStorage.getItem("token");
+    const configHeaders = {
+      headers: {
+        Authorization: "Token " + sessionToken, // + "dd",
+      },
+    };
 
     await axios
-      .post("/auth/logout/")
+      .post("/auth/logout/", null, configHeaders)
       .then((response) => {
         console.log("signOut", response);
         commit("setBio", {
@@ -89,6 +97,10 @@ const mutations = {
     state.errors = [];
     for (let [key, value] of Object.entries(errors)) {
       key = key.replaceAll("_", " ");
+      if (!Array.isArray(value)) {
+        state.errors.push({ key: key, value: value });
+        continue;
+      }
       for (let i in value) {
         state.errors.push({ key: key, value: value[i] });
       }
