@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const state = {
-  //
+  head_messages: [],
 };
 
 const getters = {
-  //
+  headMessages: (state) => state.head_messages,
 };
 
 const actions = {
@@ -18,10 +18,10 @@ const actions = {
     };
 
     await axios
-      .get(`/msgs/`, configHeaders)
+      .get(`/msgs/head/`, configHeaders)
       .then((response) => {
         console.log("getConversationList", response);
-        // commit("setParentList", response.data);
+        commit("setHeadMessages", response.data);
         // commit("setErrors", {});
       })
       .catch((error) => {
@@ -36,7 +36,9 @@ const actions = {
 };
 
 const mutations = {
-  //
+  setHeadMessages: (state, data) => {
+    [...state.head_messages] = data;
+  },
 };
 
 export default {
