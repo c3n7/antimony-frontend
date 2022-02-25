@@ -32,7 +32,16 @@
                   : true
               "
             />
-            <GroupedReceivedMessage v-else :message="message.message" />
+            <GroupedReceivedMessage
+              v-else
+              :message="message.message"
+              :middle="
+                i - 1 < 0 ||
+                Number(currentConversation[i - 1].user_to) === Number(sender)
+                  ? false
+                  : true
+              "
+            />
           </div>
 
           <div
