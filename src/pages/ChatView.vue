@@ -18,6 +18,15 @@
           :key="message.id"
           class="w-full"
         >
+          <ChatDateCard
+            :dateStr="
+              new Date(message.created_at).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })
+            "
+          />
           <div v-if="Number(message.user_from) === Number(sender)">
             <ReceivedMessage
               :message="message.message"

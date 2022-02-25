@@ -3,7 +3,7 @@
     <div
       class="bg-base-200 bg-opacity-50 basis-auto py-1 px-4 rounded-full text-sm"
     >
-      January 10
+      {{ dateStr }}
     </div>
   </div>
 </template>
@@ -11,6 +11,9 @@
 <script>
 export default {
   name: "ChatDateCard",
+  props: {
+    dateStr: String,
+  },
 };
 </script>
 
