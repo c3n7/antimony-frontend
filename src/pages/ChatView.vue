@@ -42,7 +42,7 @@
               "
               :inGroup="
                 i - 1 < 0 ||
-                Number(currentConversation[i - 1].user_from) == Number(sender)
+                Number(currentConversation[i - 1].user_from) === Number(sender)
                   ? false
                   : true
               "
