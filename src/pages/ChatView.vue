@@ -18,6 +18,11 @@
           :key="message.id"
           class="w-full"
         >
+          <!--
+          * Show if the next day is different from the previous day
+          * or if it's the last message and the previous message has a different date
+          * or if theres only one message
+          -->
           <ChatDateCard
             :dateStr="
               new Date(message.created_at).toLocaleDateString('en-US', {
@@ -25,6 +30,22 @@
                 day: 'numeric',
                 year: 'numeric',
               })
+            "
+            v-if="
+              daysBetween(
+                message.created_at,
+                i + 1 >= currentConversation.length
+                  ? message.created_at
+                  : currentConversation[i + 1].created_at
+              ) > 0 ||
+              (i + 1 >= currentConversation.length &&
+                daysBetween(
+                  i - 1 < 0
+                    ? message.created_at
+                    : currentConversation[i - 1].created_at,
+                  message.created_at
+                ) > 0) ||
+              currentConversation.length === 1
             "
           />
           <div v-if="Number(message.user_from) === Number(sender)">
