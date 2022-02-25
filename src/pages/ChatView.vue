@@ -12,6 +12,7 @@
         <button class="btn btn-lg btn-circle loading"></button>
       </div>
 
+      <!-- TODO: Massive refactoring needed of v-ifs -->
       <div v-if="loaded" class="flex flex-wrap">
         <div
           v-for="(message, i) in currentConversation"
