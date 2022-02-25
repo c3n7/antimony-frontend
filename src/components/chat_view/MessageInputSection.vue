@@ -4,11 +4,15 @@
       <div class="flex space-x-2 w-full place-items-end justify-between">
         <textarea
           class="textarea w-full"
-          :placeholder="'Message ' + sender + ' ' + receiver"
+          placeholder="Message"
           rows="1"
           @input="ResizeTextarea($event)"
+          v-model="message"
         ></textarea>
-        <button class="btn btn-primary">
+        <button
+          class="btn btn-primary"
+          :disabled="message === '' ? true : false"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5 rotate-90"
@@ -31,6 +35,11 @@ export default {
   props: {
     sender: Number,
     receiver: Number,
+  },
+  data: function () {
+    return {
+      message: "",
+    };
   },
   methods: {
     ResizeTextarea(event) {
