@@ -198,6 +198,8 @@ export default {
     ...mapActions({
       getUser: "auth/getUser",
       getCurrentConversationList: "conversations/getCurrentConversationList",
+      clearCurrentConversationList:
+        "conversations/clearCurrentConversationList",
     }),
     daysBetween(first, second) {
       // https://stackoverflow.com/a/2483476/7450617
@@ -229,6 +231,9 @@ export default {
     await this.getUser();
     // TODO: Show loading state
     await this.getCurrentConversationList(Number(this.sender));
+  },
+  beforeUnmount() {
+    this.clearCurrentConversationList();
   },
 };
 </script>

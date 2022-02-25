@@ -64,6 +64,9 @@ const actions = {
         }
       });
   },
+  clearCurrentConversationList({ commit }) {
+    commit("clearCurrentConversation");
+  },
 };
 
 const mutations = {
@@ -90,6 +93,10 @@ const mutations = {
         break;
       }
     }
+  },
+  clearCurrentConversation: (state) => {
+    state.currently_conversating_with = { first_name: "", last_name: "" };
+    state.current_conversation = [];
   },
 };
 
