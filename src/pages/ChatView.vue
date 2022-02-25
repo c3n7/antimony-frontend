@@ -33,6 +33,7 @@
             v-else-if="Number(message.user_to) === Number(sender)"
             class="w-full"
           >
+            <!--If it is the last message or the next message isn't a sent message-->
             <SentMessage
               :message="message.message"
               v-if="
@@ -40,7 +41,18 @@
                 Number(currentConversation[i + 1].user_to) !== Number(sender)
               "
             />
-            <GroupedSentMessage v-else :message="message.message" />
+            <!--If it is the first message or the previous message is a received message-->
+            <!-- then this isn't a middle one-->
+            <GroupedSentMessage
+              v-else
+              :message="message.message"
+              :middle="
+                i - 1 < 0 ||
+                Number(currentConversation[i - 1]).user_from === Number(sender)
+                  ? false
+                  : true
+              "
+            />
           </div>
         </div>
         <!-- <ReceivedMessage />

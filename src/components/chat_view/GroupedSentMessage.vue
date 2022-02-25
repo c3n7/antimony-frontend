@@ -1,6 +1,9 @@
 <template>
   <div class="basis-full flex mb-1 justify-end">
-    <div class="card shadow-md bg-base-200 basis-4/5">
+    <div
+      class="card shadow-md bg-base-200 basis-4/5"
+      :class="{ 'rounded-r-none': middle, 'rounded-br-none': !middle }"
+    >
       <div class="card-body py-4">
         <p>
           {{ message }}
@@ -15,6 +18,7 @@ export default {
   name: "GroupedSentMessage",
   props: {
     message: String,
+    middle: Boolean,
   },
 };
 </script>
