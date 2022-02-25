@@ -29,7 +29,7 @@ const actions = {
         commit("setErrors", []);
         sessionStorage.setItem("token", response.data.key);
         actions.getUser({ commit });
-        router.push("/");
+        router.push("/messages");
       })
       .catch((error) => {
         if (error.response && error.response.data) {

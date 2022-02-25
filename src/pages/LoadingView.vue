@@ -7,8 +7,19 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import router from "../utils/router";
 export default {
   name: "LoadingView",
+  methods: {
+    ...mapActions({
+      getUser: "auth/getUser",
+    }),
+  },
+  async created() {
+    await this.getUser();
+    router.replace("/messages");
+  },
 };
 </script>
 
