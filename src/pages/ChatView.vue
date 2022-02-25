@@ -155,7 +155,7 @@
     </div>
     <div class="py-60"></div>
     {{ sender }}
-    <MessageInputSection />
+    <MessageInputSection :sender="userId" :receiver="sender" />
   </div>
 </template>
 
@@ -177,6 +177,7 @@ export default {
     };
   },
   props: {
+    // TODO: Makes sense to name this as receiver
     sender: String,
   },
   components: {
@@ -190,6 +191,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      userId: "auth/user_id",
       currentConversation: "conversations/currentConversation",
       conversingWith: "conversations/currentlyConversingWith",
     }),

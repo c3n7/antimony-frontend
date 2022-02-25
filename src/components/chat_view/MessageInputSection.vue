@@ -4,7 +4,7 @@
       <div class="flex space-x-2 w-full place-items-end justify-between">
         <textarea
           class="textarea w-full"
-          placeholder="Message"
+          :placeholder="'Message ' + sender + ' ' + receiver"
           rows="1"
           @input="ResizeTextarea($event)"
         ></textarea>
@@ -28,6 +28,10 @@
 <script>
 export default {
   name: "MessageInputSection",
+  props: {
+    sender: Number,
+    receiver: Number,
+  },
   methods: {
     ResizeTextarea(event) {
       // https://stackoverflow.com/a/25621277
