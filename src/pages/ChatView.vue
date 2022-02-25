@@ -28,11 +28,20 @@
             "
           />
           <div v-if="Number(message.user_from) === Number(sender)">
+            <!--If this is the first received message or the previous message-->
+            <!-- is from a different day-->
             <ReceivedMessage
               :message="message.message"
               v-if="
                 i + 1 >= currentConversation.length ||
-                Number(currentConversation[i + 1].user_from) !== Number(sender)
+                Number(currentConversation[i + 1].user_from) !==
+                  Number(sender) ||
+                daysBetween(
+                  i - 1 < 0
+                    ? message.created_at
+                    : currentConversation[i - 1].created_at,
+                  message.created_at
+                ) > 0
               "
               :inGroup="
                 i - 1 < 0 ||
@@ -58,15 +67,37 @@
             class="w-full"
           >
             <!--If it is the last message or the next message isn't a sent message-->
+            <!-- or the previous message has a different date -->
+            <!-- or this message is the first message and the next message has a different date -->
             <SentMessage
               :message="message.message"
               v-if="
                 i + 1 >= currentConversation.length ||
-                Number(currentConversation[i + 1].user_to) !== Number(sender)
+                Number(currentConversation[i + 1].user_to) !== Number(sender) ||
+                daysBetween(
+                  i - 1 < 0
+                    ? message.created_at
+                    : currentConversation[i - 1].created_at,
+                  message.created_at
+                ) > 0 ||
+                (i - 1 < 0 &&
+                  daysBetween(
+                    message.created_at,
+                    i + 1 >= currentConversation.length
+                      ? message.created_at
+                      : currentConversation[i + 1].created_at
+                  ) > 0)
               "
               :inGroup="
                 i - 1 < 0 ||
-                Number(currentConversation[i - 1].user_from) === Number(sender)
+                Number(currentConversation[i - 1].user_from) ===
+                  Number(sender) ||
+                daysBetween(
+                  i - 1 < 0
+                    ? message.created_at
+                    : currentConversation[i - 1].created_at,
+                  message.created_at
+                ) > 0
                   ? false
                   : true
               "
@@ -85,16 +116,6 @@
             />
           </div>
         </div>
-        <!-- <ReceivedMessage />
-        <SentMessage />
-        <GroupedReceivedMessage />
-        <ReceivedMessage />
-        <SentMessage />
-        <GroupedReceivedMessage />
-        <ReceivedMessage />
-        <ChatDateCard />
-        <SentMessage />
-        <ReceivedMessage /> -->
       </div>
     </div>
     <div class="py-60"></div>
@@ -143,6 +164,31 @@ export default {
       getUser: "auth/getUser",
       getCurrentConversationList: "conversations/getCurrentConversationList",
     }),
+    daysBetween(first, second) {
+      // https://stackoverflow.com/a/2483476/7450617
+      first = new Date(first);
+      second = new Date(second);
+
+      // Copy date parts of the timestamps, discarding the time parts.
+      var one = new Date(
+        first.getFullYear(),
+        first.getMonth(),
+        first.getDate()
+      );
+      var two = new Date(
+        second.getFullYear(),
+        second.getMonth(),
+        second.getDate()
+      );
+
+      // Do the math.
+      var millisecondsPerDay = 1000 * 60 * 60 * 24;
+      var millisBetween = two.getTime() - one.getTime();
+      var days = millisBetween / millisecondsPerDay;
+
+      // Round down.
+      return Math.floor(days);
+    },
   },
   async created() {
     await this.getUser();
