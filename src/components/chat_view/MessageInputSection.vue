@@ -56,12 +56,12 @@ export default {
       event.target.style.height = event.target.scrollHeight + "px";
     },
     submit() {
-      console.log("Submitting");
       this.sendMessage({
         message: this.message,
         user_from: this.sender,
         user_to: this.receiver,
       });
+      this.message = "";
     },
   },
 };
