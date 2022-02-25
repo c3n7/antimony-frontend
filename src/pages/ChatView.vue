@@ -155,7 +155,7 @@
     </div>
     <div class="py-60"></div>
     {{ sender }}
-    <MessageInputSection :sender="userId" :receiver="sender" />
+    <MessageInputSection :sender="Number(userId)" :receiver="Number(sender)" />
   </div>
 </template>
 
