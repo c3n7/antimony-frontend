@@ -12,7 +12,7 @@
         <button
           class="btn btn-primary"
           :disabled="message === '' ? true : false"
-          @click="sendMessage()"
+          @click="submit()"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "MessageInputSection",
   props: {
@@ -43,6 +44,9 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      sendMessage: "conversations/sendMessage",
+    }),
     ResizeTextarea(event) {
       // https://stackoverflow.com/a/25621277
       if (event.target.scrollHeight > 300) {
@@ -51,9 +55,13 @@ export default {
       event.target.style.height = "auto";
       event.target.style.height = event.target.scrollHeight + "px";
     },
-    sendMessage() {
+    submit() {
       console.log("Submitting");
-      // this.authenticate({ email: this.email, password: this.password });
+      this.sendMessage({
+        message: this.message,
+        user_from: this.sender,
+        user_to: this.receiver,
+      });
     },
   },
 };

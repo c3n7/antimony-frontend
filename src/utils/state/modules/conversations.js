@@ -67,6 +67,24 @@ const actions = {
   clearCurrentConversationList({ commit }) {
     commit("clearCurrentConversation");
   },
+  async sendMessage({ commit }, details) {
+    const sessionToken = sessionStorage.getItem("token");
+    const configHeaders = {
+      headers: {
+        Authorization: "Token " + sessionToken, // + "dd",
+      },
+    };
+
+    await axios
+      .post("/msgs/", details, configHeaders)
+      .then((response) => {
+        console.log("sendMessage", response);
+        actions.getCurrentConversationList({ commit }, details.user_to);
+      })
+      .catch((error) => {
+        console.log("sendMessage", error);
+      });
+  },
 };
 
 const mutations = {
