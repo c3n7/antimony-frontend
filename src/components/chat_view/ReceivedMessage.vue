@@ -16,7 +16,9 @@
         </svg>
       </button>
     </div>
-    <div class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12">
+    <div
+      class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12 rounded-bl-none"
+    >
       <div class="card-body py-4">
         <p>
           {{ message }}
