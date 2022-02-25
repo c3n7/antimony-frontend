@@ -40,6 +40,12 @@
                 i + 1 >= currentConversation.length ||
                 Number(currentConversation[i + 1].user_to) !== Number(sender)
               "
+              :inGroup="
+                i - 1 < 0 ||
+                Number(currentConversation[i - 1].user_from) == Number(sender)
+                  ? false
+                  : true
+              "
             />
             <!--If it is the first message or the previous message is a received message-->
             <!-- then this isn't a middle one-->
@@ -48,7 +54,7 @@
               :message="message.message"
               :middle="
                 i - 1 < 0 ||
-                Number(currentConversation[i - 1]).user_from === Number(sender)
+                Number(currentConversation[i - 1].user_from) === Number(sender)
                   ? false
                   : true
               "
