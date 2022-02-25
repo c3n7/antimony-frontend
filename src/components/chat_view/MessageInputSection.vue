@@ -12,6 +12,7 @@
         <button
           class="btn btn-primary"
           :disabled="message === '' ? true : false"
+          @click="sendMessage()"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +50,10 @@ export default {
       }
       event.target.style.height = "auto";
       event.target.style.height = event.target.scrollHeight + "px";
+    },
+    sendMessage() {
+      console.log("Submitting");
+      // this.authenticate({ email: this.email, password: this.password });
     },
   },
 };
