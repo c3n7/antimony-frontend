@@ -13,11 +13,18 @@
       </div>
 
       <div v-if="loaded" class="flex flex-wrap">
-        <div v-for="message in currentConversation" :key="message.id">
-          <ReceivedMessage
-            v-if="Number(message.user_from) === Number(sender)"
-            :message="message.message"
-          />
+        <div v-for="(message, i) in currentConversation" :key="message.id">
+          <div v-if="Number(message.user_from) === Number(sender)">
+            <ReceivedMessage
+              :message="message.message"
+              v-if="
+                i + 1 >= currentConversation.length ||
+                Number(currentConversation[i + 1].user_from) !== Number(sender)
+              "
+            />
+            <GroupedReceivedMessage v-else :message="message.message" />
+          </div>
+
           <SentMessage
             v-else-if="Number(message.user_to) === Number(sender)"
             :message="message.message"
