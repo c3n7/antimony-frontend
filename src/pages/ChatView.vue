@@ -41,11 +41,24 @@
                     ? message.created_at
                     : currentConversation[i - 1].created_at,
                   message.created_at
-                ) > 0
+                ) > 0 ||
+                (i - 1 < 0 &&
+                  daysBetween(
+                    message.created_at,
+                    i + 1 >= currentConversation.length
+                      ? message.created_at
+                      : currentConversation[i + 1].created_at
+                  ) > 0)
               "
               :inGroup="
                 i - 1 < 0 ||
-                Number(currentConversation[i - 1].user_to) === Number(sender)
+                Number(currentConversation[i - 1].user_to) === Number(sender) ||
+                daysBetween(
+                  i - 1 < 0
+                    ? message.created_at
+                    : currentConversation[i - 1].created_at,
+                  message.created_at
+                ) > 0
                   ? false
                   : true
               "
