@@ -2,10 +2,15 @@ import { createWebHistory, createRouter } from "vue-router";
 import ChatView from "../../pages/ChatView.vue";
 import MessageListView from "../../pages/MessageListView.vue";
 import SignInView from "../../pages/SignInView.vue";
+import LoadingView from "../../pages/LoadingView.vue";
 
 const routes = [
   {
     path: "/",
+    component: LoadingView,
+  },
+  {
+    path: "/messages",
     component: MessageListView,
   },
   {
