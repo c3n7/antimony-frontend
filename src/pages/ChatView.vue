@@ -13,7 +13,11 @@
       </div>
 
       <div v-if="loaded" class="flex flex-wrap">
-        <div v-for="(message, i) in currentConversation" :key="message.id">
+        <div
+          v-for="(message, i) in currentConversation"
+          :key="message.id"
+          class="w-full"
+        >
           <div v-if="Number(message.user_from) === Number(sender)">
             <ReceivedMessage
               :message="message.message"
@@ -25,10 +29,19 @@
             <GroupedReceivedMessage v-else :message="message.message" />
           </div>
 
-          <SentMessage
+          <div
             v-else-if="Number(message.user_to) === Number(sender)"
-            :message="message.message"
-          />
+            class="w-full"
+          >
+            <SentMessage
+              :message="message.message"
+              v-if="
+                i + 1 >= currentConversation.length ||
+                Number(currentConversation[i + 1].user_to) !== Number(sender)
+              "
+            />
+            <GroupedSentMessage v-else :message="message.message" />
+          </div>
         </div>
         <!-- <ReceivedMessage />
         <SentMessage />
@@ -57,6 +70,7 @@ import GroupedReceivedMessage from "../components/chat_view/GroupedReceivedMessa
 import ChatNavBar from "../components/chat_view/ChatNavBar.vue";
 import MessageInputSection from "../components/chat_view/MessageInputSection.vue";
 import ChatDateCard from "../components/chat_view/ChatDateCard.vue";
+import GroupedSentMessage from "../components/chat_view/GroupedSentMessage.vue";
 export default {
   name: "ChatView",
   data: function () {
@@ -74,6 +88,7 @@ export default {
     ChatNavBar,
     MessageInputSection,
     ChatDateCard,
+    GroupedSentMessage,
   },
   computed: {
     ...mapGetters({
