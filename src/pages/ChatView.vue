@@ -20,9 +20,10 @@
           class="w-full"
         >
           <!--
-          * Show if the next day is different from the previous day
+          * Show if 
+          * if theres only one message
+          * the previous day is different from this day
           * or if it's the last message and the previous message has a different date
-          * or if theres only one message
           -->
           <ChatDateCard
             :dateStr="
@@ -33,20 +34,13 @@
               })
             "
             v-if="
+              i === 0 ||
               daysBetween(
-                message.created_at,
-                i + 1 >= currentConversation.length
+                i - 1 < 0
                   ? message.created_at
-                  : currentConversation[i + 1].created_at
-              ) > 0 ||
-              (i + 1 >= currentConversation.length &&
-                daysBetween(
-                  i - 1 < 0
-                    ? message.created_at
-                    : currentConversation[i - 1].created_at,
-                  message.created_at
-                ) > 0) ||
-              currentConversation.length === 1
+                  : currentConversation[i - 1].created_at,
+                message.created_at
+              ) > 0
             "
           />
           <div v-if="Number(message.user_from) === Number(sender)">
@@ -58,13 +52,13 @@
                 i + 1 >= currentConversation.length ||
                 Number(currentConversation[i + 1].user_from) !==
                   Number(sender) ||
-                daysBetween(
+                (daysBetween(
                   i - 1 < 0
                     ? message.created_at
                     : currentConversation[i - 1].created_at,
                   message.created_at
-                ) > 0 ||
-                (i - 1 < 0 &&
+                ) > 0 &&
+                  i - 1 < 0 &&
                   daysBetween(
                     message.created_at,
                     i + 1 >= currentConversation.length
@@ -102,20 +96,20 @@
             class="w-full"
           >
             <!--If it is the last message or the next message isn't a sent message-->
-            <!-- or the previous message has a different date -->
-            <!-- or this message is the first message and the next message has a different date -->
+            <!-- or the previous message has a different date and -->
+            <!--    this message is the first message and the next message has a different date -->
             <SentMessage
               :message="message.message"
               v-if="
                 i + 1 >= currentConversation.length ||
                 Number(currentConversation[i + 1].user_to) !== Number(sender) ||
-                daysBetween(
+                (daysBetween(
                   i - 1 < 0
                     ? message.created_at
                     : currentConversation[i - 1].created_at,
                   message.created_at
-                ) > 0 ||
-                (i - 1 < 0 &&
+                ) > 0 &&
+                  i - 1 < 0 &&
                   daysBetween(
                     message.created_at,
                     i + 1 >= currentConversation.length
