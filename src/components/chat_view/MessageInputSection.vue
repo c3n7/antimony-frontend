@@ -56,6 +56,7 @@ export default {
       event.target.style.height = event.target.scrollHeight + "px";
     },
     submit() {
+      // TODO: Show errors after sending"
       this.sendMessage({
         message: this.message,
         user_from: this.sender,
