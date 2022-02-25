@@ -17,7 +17,8 @@
       </button>
     </div>
     <div
-      class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12 rounded-bl-none"
+      class="card shadow-md bg-base-200 basis-9/12 md:basis-10/12"
+      :class="{ 'rounded-tl-none': inGroup }"
     >
       <div class="card-body py-4">
         <p>
@@ -33,6 +34,7 @@ export default {
   name: "ReceivedMessage",
   props: {
     message: String,
+    inGroup: Boolean,
   },
 };
 </script>

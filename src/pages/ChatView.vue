@@ -25,6 +25,12 @@
                 i + 1 >= currentConversation.length ||
                 Number(currentConversation[i + 1].user_from) !== Number(sender)
               "
+              :inGroup="
+                i - 1 < 0 ||
+                Number(currentConversation[i - 1].user_to) === Number(sender)
+                  ? false
+                  : true
+              "
             />
             <GroupedReceivedMessage v-else :message="message.message" />
           </div>
