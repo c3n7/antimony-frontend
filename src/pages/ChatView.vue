@@ -58,7 +58,9 @@
                     : currentConversation[i - 1].created_at,
                   message.created_at
                 ) > 0 &&
-                  i - 1 < 0 &&
+                  Number(currentConversation[i + 1].user_from) !==
+                    Number(sender)) ||
+                (i - 1 < 0 &&
                   daysBetween(
                     message.created_at,
                     i + 1 >= currentConversation.length
@@ -96,7 +98,8 @@
             class="w-full"
           >
             <!--If it is the last message or the next message isn't a sent message-->
-            <!-- or the previous message has a different date and -->
+            <!-- or if the previous message has a different date and the next message -->
+            <!-- is not a sent message -->
             <!--    this message is the first message and the next message has a different date -->
             <SentMessage
               :message="message.message"
@@ -109,7 +112,9 @@
                     : currentConversation[i - 1].created_at,
                   message.created_at
                 ) > 0 &&
-                  i - 1 < 0 &&
+                  Number(currentConversation[i + 1].user_to) !==
+                    Number(sender)) ||
+                (i - 1 < 0 &&
                   daysBetween(
                     message.created_at,
                     i + 1 >= currentConversation.length
