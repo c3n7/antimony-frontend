@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       enGBTimeOptions: { hour: "2-digit", minute: "2-digit" },
+      refreshInterval: false,
     };
   },
   computed: {
@@ -61,10 +62,17 @@ export default {
       }
       return dateStr;
     },
+    async refreshMessages() {
+      await this.getConversationList();
+    },
   },
   async created() {
     await this.getUser();
-    await this.getConversationList();
+    await this.refreshMessages();
+    this.refreshInterval = setInterval(this.refreshMessages, 5000);
+  },
+  beforeUnmount() {
+    clearInterval(this.refreshInterval);
   },
 };
 </script>
