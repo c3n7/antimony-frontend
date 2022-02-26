@@ -221,11 +221,15 @@ export default {
       // Round down.
       return Math.floor(days);
     },
+    async refreshMessages() {
+      await this.getCurrentConversationList(Number(this.sender));
+    },
   },
   async created() {
     await this.getUser();
     // TODO: Show loading state
-    await this.getCurrentConversationList(Number(this.sender));
+    await this.refreshMessages();
+    setInterval(this.refreshMessages, 3000);
   },
   beforeUnmount() {
     this.clearCurrentConversationList();
