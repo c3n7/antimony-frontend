@@ -167,6 +167,7 @@ export default {
   data: function () {
     return {
       loaded: true,
+      refreshInterval: false,
     };
   },
   props: {
@@ -229,9 +230,10 @@ export default {
     await this.getUser();
     // TODO: Show loading state
     await this.refreshMessages();
-    setInterval(this.refreshMessages, 3000);
+    this.refreshInterval = setInterval(this.refreshMessages, 3000);
   },
   beforeUnmount() {
+    clearInterval(this.refreshInterval);
     this.clearCurrentConversationList();
   },
 };
