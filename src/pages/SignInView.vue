@@ -9,14 +9,9 @@
         <div class="card-body">
           <div class="card-title flex justify-between">
             <span>Sign In to Antimony</span>
-            <label
-              for="credentials-modal"
-              class="btn btn-primary btn-outline btn-sm modal-button"
-              >demo credentials</label
-            >
             <div class="dropdown dropdown-end">
               <label tabindex="0" class="btn btn-primary btn-outline btn-sm"
-                >Click</label
+                >Demo Credentials</label
               >
               <ul
                 tabindex="0"
@@ -29,26 +24,6 @@
                   <a class="text-base">{{ email }}</a>
                 </li>
               </ul>
-            </div>
-            <input
-              type="checkbox"
-              id="credentials-modal"
-              class="modal-toggle"
-            />
-            <div class="modal">
-              <div class="modal-box bg-base-200">
-                <h3 class="font-bold text-lg">
-                  Congratulations random Interner user!
-                </h3>
-                <ul class="py-4">
-                  <li v-for="(email, i) in sampleEmails" :key="i">
-                    {{ email }}
-                  </li>
-                </ul>
-                <div class="modal-action">
-                  <label for="credentials-modal" class="btn">Yay!</label>
-                </div>
-              </div>
             </div>
           </div>
 
